@@ -8,12 +8,11 @@ let timer;
 let timeLeft = 10;
 
 const winPatterns = [
-  [0,1,2], [3,4,5], [6,7,8],  // rows
-  [0,3,6], [1,4,7], [2,5,8],  // columns
-  [0,4,8], [2,4,6]            // diagonals
+  [0,1,2], [3,4,5], [6,7,8],  
+  [0,3,6], [1,4,7], [2,5,8],
+  [0,4,8], [2,4,6]            
 ];
 
-// Start 10-sec timer
 function startTimer() {
   clearInterval(timer); // clear existing
   timeLeft = 10;
@@ -29,14 +28,13 @@ function startTimer() {
   }, 1000);
 }
 
-// Switch turn
 function switchPlayer() {
   currentPlayer = currentPlayer === "X" ? "O" : "X";
   turnText.textContent = `Player ${currentPlayer === "X" ? 1 : 2}'s Turn`;
   startTimer();
 }
 
-// Check if player has won
+
 function checkWin() {
   for (let pattern of winPatterns) {
     let [a,b,c] = pattern;
@@ -61,7 +59,7 @@ function checkWin() {
   }
 }
 
-// On click
+
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (!gameActive || box.textContent !== "") return;
@@ -85,5 +83,6 @@ resetBtn.textContent = "Reset Game";
 resetBtn.style.marginTop = "15px";
 resetBtn.onclick = resetGame;
 document.body.appendChild(resetBtn);
+
 
 startTimer();
